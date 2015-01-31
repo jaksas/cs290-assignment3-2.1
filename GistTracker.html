@@ -3,27 +3,29 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Gist Tracker</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src='src/functions.js'></script>
 	</head>
 	<body>
 		<section>
-			<caption>View Gists</caption>
-			<form action= "https://api.github.com/gists/public" method="get"
+		<form>
 			<label for="number_pages"># Pages of Results to Display (1-5)</label>
-			<input type="number" name="number_pages" value="1">
+			<input type="number" name="number_pgs_chc" value="1" onchange='valNum()'>
 			<br>
 			<label for="language_filter">Filter Out Results by Language</label>
 			<br>
 			<input type="checkbox" name="language_filter" value="Python">Python
 			<br>
-			<input type="checkbox" name="language_filter" value="Skittles">JSON
+			<input type="checkbox" name="language_filter" value="JSON">JSON
 			<br>
-			<input type="checkbox" name="language_filter" value="Mentos">Javascript
+			<input type="checkbox" name="language_filter" value="Javascript">Javascript
 			<br>
-			<input type="checkbox" name="language_filter" value="Mentos">SQL
+			<input type="checkbox" name="language_filter" value="SQL">SQL
+			<input type="button" value="Search" onclick='userPrefs(); getGists();'>
 			<br>
-			<input type="submit">
-			</form>
+		</form>
+		<form action= "https://api.github.com/gists/public" method="get">	
 		</section>
+		<div id="showGists">
+		</div>
 	</body>
 </html>
