@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Gist Tracker</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<section>
+			<caption>View Gists</caption>
+			<form action= "https://api.github.com/gists/public" method="get"
+			<label for="number_pages"># Pages of Results to Display (1-5)</label>
+			<input type="number" name="number_pages" value="1">
+			<br>
+			<label for="language_filter">Filter Out Results by Language</label>
+			<br>
+			<input type="checkbox" name="language_filter" value="Python">Python
+			<br>
+			<input type="checkbox" name="language_filter" value="Skittles">JSON
+			<br>
+			<input type="checkbox" name="language_filter" value="Mentos">Javascript
+			<br>
+			<input type="checkbox" name="language_filter" value="Mentos">SQL
+			<br>
+			<input type="submit">
+			</form>
+		</section>
+	</body>
+</html>
