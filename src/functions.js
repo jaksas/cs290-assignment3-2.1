@@ -52,27 +52,28 @@ function getGists() {
 	
 function filterGists(gistsArray) {
 	var printableGists = new Array(); 
-	var noLangs = JSON.parse(sessionStorage.noLanguages); 
-	var dummy; 
 	
 	for (var i = 0; i < gistsArray.length; i++) { 
 		
-		for(var key in gistsArray[i].files) {
-			console.log(key);
-			console.log(gistsArray[i].files[key]["language"]);
-		}
-		
-		//console.log(gistsArray[i].files); 
-		//console.log(gistsArray[i].files[0]); 
-		
-		for (var j = 0; j < noLangs.length; j++) {
-			
-			if (gistsArray[i].files.language == noLangs[i])
-			{
-				printableGists.push([gistsArray[i].url, gistsArray[i].description]); 
-				//console.log(gistsArray[i].url);
-				//console.log(gistsArray[i].files.language);
-			}	
-		}
+		if(testLangs(gistsArray[i].files)) { 
+			printableGists.push([gistsArray[i].url, gistsArray[i].description]); 			
+		}	
 	}
 }
+
+function testLangs(gistFiles) {
+	var noLangs = JSON.parse(sessionStorage.noLanguages); 
+	
+	for(var key in gistFiles) {
+		
+		for(var j = 0; j < noLangs.length; j++) {
+			
+			if (gistsArray[i].files[key]["language"] == noLangs[j]) {
+				return false;
+			}
+		}
+	}
+
+	return true; 
+}
+
