@@ -6,8 +6,10 @@
 		<script src='src/functions.js'></script>
 	</head>
 	<body>
-		<section>
-		<form>
+		<header>YOUR FAVORITES:</header>
+		<br>
+		<div id="showFavorites"></div>
+		<form header="SEARCH FOR NEW GISTS">
 			<label for="number_pages"># Pages of Results to Display (1-5)</label>
 			<input type="number" name="number_pgs_chc" value="1" onchange='valNum()'>
 			<br>
@@ -17,15 +19,14 @@
 			<br>
 			<input type="checkbox" name="language_filter" value="JSON">JSON
 			<br>
-			<input type="checkbox" name="language_filter" value="Javascript">Javascript
+			<input type="checkbox" name="language_filter" value="JavaScript">JavaScript
 			<br>
 			<input type="checkbox" name="language_filter" value="SQL">SQL
 			<input type="button" value="Search" onclick='userPrefs(); getGists();'>
 			<br>
-		</form>
-		<form action= "https://api.github.com/gists/public" method="get">	
-		</section>
-		<div id="showGists">
-		</div>
+		</form>		
+		<br>
+		<header>SEARCH RESULTS:</header>
+		<div id="showSearch"></div>
 	</body>
 </html>
