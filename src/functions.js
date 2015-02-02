@@ -28,38 +28,37 @@ function userPrefs() {
 	sessionStorage["noLanguages"] = JSON.stringify(noLangs); 
 }
 	
-function getGists() {
-	var req = new XMLHttpRequest();
-	var url = "https://api.github.com/gists/public";
-		
-	if(!req) {
-		throw 'Unable to create HttpRequest.';
-	}
-	
+function getGists() {	
 	//Clear the current search results
 	document.body.removeChild(document.getElementById("showSearch"));
 	var searchResults = document.createElement('div'); 
 	searchResults.id = "showSearch"; 
 	document.body.appendChild(searchResults);
-	
-	
+		
 	for(var i = 1; i <= sessionStorage.number_pgs; i++) {
-
-		alert(i); 
-		url += '?page=' + i;
-		//url += '?page=1&per_page=' + sessionStorage.number_pgs * 30;
-	
-		req.open("GET", url, true);
-
-		req.onreadystatechange=function() {
-			if(this.readyState==4) {
-				printGists( filterGists( JSON.parse( req.responseText)), "showSearch"); 
-			}
-		}
-	
-		req.send(null); 
-		alert(i); 		
+		getGists1(i); 
 	}
+}
+	
+function getGists1(num_pg) {
+	var req = new XMLHttpRequest();
+	var url = "https://api.github.com/gists/public";
+	
+	if(!req) {
+		throw 'Unable to create HttpRequest.';
+	}
+	
+	url += '?page=' + num_pg;
+	
+	req.open("GET", url, true);
+		
+	req.onreadystatechange=function() {
+		if(this.readyState==4) {
+			printGists( filterGists( JSON.parse( req.responseText)), "showSearch"); 
+		}
+	}
+	
+	req.send(null); 	
 }
 	
 function filterGists(gistsArray) {
@@ -71,7 +70,7 @@ function filterGists(gistsArray) {
 			filteredGists.push([gistsArray[i].url, gistsArray[i].description, gistsArray[i].html_url]); 			
 		}	
 	}
-	
+		
 	return filteredGists; 
 }
 
@@ -97,8 +96,16 @@ function printGists(filteredGists, gistType) {
 	var gistAPIurl; 	//The api url is listed for each search result
 	var gistDescribe;	//Description of the gist (also links to html gist)
 	var button; 		//"Add to Favorites" or "Remove from Favorites" 
+	var start;
 	
-	for(var i = 0; i < filteredGists.length; i++) {
+	if(document.getElementById(gistType).lastChild === null) {
+		start = 0;
+	}
+	else {
+		start = parseInt(document.getElementById(gistType).lastChild.id.slice(gistType.length)) + 1;
+	}
+	
+	for(var i = start; i < start + filteredGists.length; i++) {
 		/*Create a div for each search result. Each div has a unique ID correlated
 		to its own 'Add to Favorites' button. Clicking this button removes
 		the corresponding div from the search results and places it in favorites,
@@ -110,7 +117,7 @@ function printGists(filteredGists, gistType) {
 		will have the appropriate text and will use its ID to remove the appropriate
 		search result from the list of search results*/
 		button = document.createElement("button");
-		button.id = i + gistType; 
+		button.id = gistType + "b" + i; 
 		if(gistType === "showSearch") { 
 			button.appendChild(document.createTextNode("Add to Favorites"));
 		}
@@ -126,21 +133,21 @@ function printGists(filteredGists, gistType) {
 		
 		//Add the URL to the div 
 		gistAPIurl = document.createElement('a'); 
-		gistAPIurl.innerHTML = filteredGists[i][0];
-		gistAPIurl.setAttribute('href', filteredGists[i][0]);
+		gistAPIurl.innerHTML = filteredGists[i - start][0];
+		gistAPIurl.setAttribute('href', filteredGists[i - start][0]);
 		gistDiv.appendChild(gistAPIurl); 
 		gistDiv.appendChild(document.createElement("br")); 
 				
 		//Add the description to the div 
 		gistDescribe = document.createElement('a');  
-		if (filteredGists[i][1] === "" || filteredGists[i][1] === null) {
+		if (filteredGists[i - start][1] === "" || filteredGists[i - start][1] === null) {
 			gistDescribe.innerHTML = "No description"; 
 		}
 		else {
-			gistDescribe.innerHTML = filteredGists[i][1]; 
+			gistDescribe.innerHTML = filteredGists[i - start][1]; 
 		}
 		//Set the description to work as a link to the html version of the gist
-		gistDescribe.setAttribute('href', filteredGists[i][2]);
+		gistDescribe.setAttribute('href', filteredGists[i - start][2]);
 		gistDiv.appendChild(gistDescribe); 
 		gistDiv.appendChild(document.createElement("br")); 
 		
@@ -156,8 +163,8 @@ function printGists(filteredGists, gistType) {
 		button and adds it to the favorites list -  
 		using the button's ID and the div's ID to find the correct div*/
 		button.onclick = function() {
-			document.getElementById(gistType).removeChild(document.getElementById(gistType + this.id[0]))
-		}; 
-	}	
+			document.getElementById(gistType).removeChild(document.getElementById(gistType + this.id.slice(gistType.length + 1)));
+		} 
+	}
 }
 
