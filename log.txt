@@ -1,0 +1,96 @@
+PART 1
+
+Start: Sat 24 Jan 2015 12:27:45 -0600
+End: Sat 24 Jan 2015 14:57:50 -0600
+Tasks: 
+Created the new repository and imported the master repository.
+Cloned the repository locally. 
+Wrote the functions for the variable src file.
+Wrote the first two functions for the function src file.
+Also read on the discussion boards, did some work with, poked around in scratch pad,
+tried a few different automatic script runners online; set up the repository and then
+finally cloned it to my own computer. Installed GitHub for Windows. Got frustrated 
+working with Linter online, which complained about everything. Most of the work here 
+wasn't actually coding. Was also doing laundry, dishes, cleaning - hm, actual work 
+time here was probably three hours.  
+
+Start: Sat 24 Jan 2015 16:30:00 -0600 (ESTIMATE - I didn't commit anything when I sat back 
+down)
+End: Sat 24 Jan 2015 18:29:23 -0600
+Tasks: Wrote the last function for the variable src file. Read about slice function, 
+encountered some major problems because I overlooked the fact that the date should 
+be stored as a data object, not just as a string. 
+
+Start: Sun 25 Jan 2015 00:00:00 -0600 (ESTIMATE, but it was very close to midnight)
+End: Sun 25 Jan 4:15:33 2015 -0600 
+Tasks: Wrote and error tested the code for objects.js. This was probably about one 
+and a half hours. Then I style checked - installed Python 2.7, got Linter up and running. 
+This took a long time. Went off on some tangents with some old python programs. 
+Actual work time here was probably three or so hours.
+
+**
+I'd say my total work time for this portion of the assignment, counting necessary
+background reading (like learning about slice) and counting helpful discussion board
+forays, but not counting extraneous work, was 8-9 hours.  
+**
+
+PART 2
+
+Start: Fri 30 Jan 2015 16:30:00 -0600 
+End: Fri Jan 30 18:34:55 2015 -0600 
+Tasks: Setting up a form that receives response from GitHub
+
+Start: Sat 31 Jan 2015 06:00:00 -0600 
+End:  Sat Jan 31 09:10:44 2015 -0600
+Tasks: Created div to show search results, and created functions and html for filtering
+searches. Lots of work trying to access languages of the api files. 
+
+Start: Sat 31 Jan 2015 17:00:00 -0600 
+End:  Sat Jan 31 17:55:04 2015 -0600
+Tasks: At last I am able to search through the languages of each file for each gist and
+eliminate the entries we don't want
+
+Start: Sat Jan 31 2015 18:15:00 -0600 
+End:  Sat Jan 31 20:26:58 2015 -0600
+Tasks: Separate function to test the langauge of each file in each gist
+
+Start: Sun Feb 1 09:00:00 2015 -0600  
+End: Sun Feb 1 16:45:26 2015 -0600
+Tasks: Most of this time spent getting the results to actually display, getting them 
+to be removable  and movable to the appropriate area (from search results to favorites)
+
+Start: Sun Feb 1 17:30:00 2015 -0600  
+End: Mon Feb 2 00:46:09 2015 -0600
+
+Tasks: Huge task with getting the correct amount of results to display once I realized
+that I needed successive HttpXML requests and found that the lag in the response was
+causing my program to get ahead of itself - so that I was printing out an empty array,
+since the response had not come back yet. Got the elimination of results already in 
+favorites to work and local storage for favorites to work. Got printGists function
+to work for multiple purposes, as originally intended in my initial design. Then 
+spent commented my code and elimianted the errors discovered by lint. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
